@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "build": "dropdb books_for_freedom -e -i --if-exists && createdb books_for_freedom && psql books_for_freedom < ./database/schema.sql && psql books_for_freedom < ./database/books.sql"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
