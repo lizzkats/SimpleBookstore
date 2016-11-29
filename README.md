@@ -18,6 +18,10 @@ Creating this web application will provide exposure to:
 - [ ] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
 ### Required
 - [x] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
+## Stretch Goals
+-Use React 
+-Deploy to Heroku
+-Implement Full Text Search for Postgres
 ## Quality Rubric
 - Code is well formatted without any linting errors
 - Variables, functions, css classes, etc. are meaningfully named (no comments exist in code to explain functionality - the names serve that function)
