@@ -2,7 +2,6 @@ extends layout
 
 block content
   for book in books
-    h1= book.title
-
-    a
+    a(href=`/details/${book.id}`)
+      h1= book.title
       img(src=`${book.image_url}`)
