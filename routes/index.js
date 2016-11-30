@@ -10,17 +10,24 @@ router.get('/', function(req, res, next) {
   let random = []
   for (var i = 0; i < 10; i++) {
     let id = Math.floor(Math.random()*1000)
-    random.push(Books.random(id))
+    random.push(Books.get(id))
   }
-  return Promise.all(random)
-.then( books => {
-  console.log(books)
-  res.render('index', { title: 'Express', books: books })
-})
+  Promise.all(random)
+  .then( books => {
+    console.log(books)
+    res.render('index', { title: 'Express', books: books })
+  })
 });
 
-router.post('/details', function(req, res, next) {
+router.get('/details/:id', function(req, res, next) {
+  var id = req.params.id
+  Books.get(id).then((book) => {
+    res.render('details', { book: book })
+  })
+});
 
-})
+// router.post('/details', function(req, res, next) {
+//
+// })
 
 module.exports = router;

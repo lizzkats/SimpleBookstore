@@ -5,12 +5,12 @@ const db = pgp(connectionString)
 
 const getAllBooks = 'SELECT * FROM books LIMIT 10 OFFSET $1'
 
-const getRandomBook = 'SELECT * FROM books WHERE id = $1'
+const getBook = 'SELECT * FROM books WHERE id = $1'
 
 const Books = {
   all: (offset) => db.any(getAllBooks, [offset])
                   .then(),
-  random: (id) => db.one(getRandomBook, [id]),
+  get: (id) => db.one(getBook, [id]),
   delete: (id) => db.one(deleteBook, [id]),
   add: (description, image_url, title) => db.one(addBook, [description, image_url, title]),
   edit: (id, description, image_url, title) => db.one(editBook, [id, description, image_url, title]),
