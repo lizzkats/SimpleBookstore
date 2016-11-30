@@ -6,9 +6,6 @@ const Books = require('../database/db').Books
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // const page = req.body.page || 1
-  // const offset = (page - 1) * 10
-  // return Books.all(offset)
   let random = []
   for (var i = 0; i < 10; i++) {
     let id = Math.floor(Math.random()*1000)
@@ -45,9 +42,5 @@ router.get('/details/:id', function(req, res, next) {
     res.render('details', { book: book })
   })
 });
-
-// router.post('/details', function(req, res, next) {
-//
-// })
 
 module.exports = router;
