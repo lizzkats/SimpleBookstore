@@ -5,9 +5,12 @@ const db = pgp(connectionString)
 
 const getAllBooks = 'SELECT * FROM books LIMIT 10 OFFSET $1'
 
+const getRandomBook = 'SELECT * FROM books WHERE id = $1'
+
 const Books = {
   all: (offset) => db.any(getAllBooks, [offset])
                   .then(),
+  random: (id) => db.one(getRandomBook, [id]),
   delete: (id) => db.one(deleteBook, [id]),
   add: (description, image_url, title) => db.one(addBook, [description, image_url, title]),
   edit: (id, description, image_url, title) => db.one(editBook, [id, description, image_url, title]),
@@ -25,7 +28,7 @@ const Genres = {
   get: (books) => db.any(getGenres, [books]),
   delete: (book_id) => db.none(deleteGenre, [book_id]),
   edit: (book_id) => db.one(editGenre, [book_id]),
-  search: db.any(searchGenres, [name])
+  search: (name) => db.any(searchGenres, [name])
 }
 
 module.exports = {Books, Authors, Genres};

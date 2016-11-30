@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p #{books[0].title}
+  for book in books
+    h1= book.title
+
+    a
+      img(src=`${book.image_url}`)
