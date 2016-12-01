@@ -1,13 +1,13 @@
 extends layout
 
 block content
-  for book in books
-    a(href=`/details/${book.id}`)
-      h1= book.title
-      img(src=`${book.image_url}`)
-    for author in book.authors
+  for item in items
+    a(href=`/details/${item.id}`)
+      h1= item.title
+      img(src=`${item.image_url}`)
+    for author in item.authors
       h2= author.name
-    -names = book.genres.map(genre => genre.name)
+    -names = item.genres.map(genre => genre.name)
     -names = names.filter( (element, index, array) => !array.slice(0, index).includes(element))
     for name in names
       h5= name
