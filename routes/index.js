@@ -18,10 +18,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/details/:id', function(req, res, next) {
-  var id = req.params.id
+  const id = req.params.id
   Books.get(id).then((book) => {
-    res.render('details', { book: book })
+    res.render('details', { book : book })
   })
 });
+
+router.post('/delete/:id', function(req, res, next){
+  const id = req.params.id
+  console.log(id)
+  Books.delete(id)
+  .then( deletedBook => {
+    console.log('deletedBook:',deletedBook)
+    res.render('deletedBook',{ deletedBook : deletedBook })
+  })
+})
 
 module.exports = router;
