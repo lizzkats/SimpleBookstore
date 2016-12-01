@@ -7,7 +7,7 @@ const Books = require('../database/db').Books
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let random = []
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 12; i++) {
     let id = Math.floor(Math.random()*1000)
     random.push(Books.get(id))
   }
