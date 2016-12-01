@@ -18,17 +18,20 @@ router.post('/add', function(req, res, next) {
   Books.add(description, image_url, title)
   .then(book => {
     let addAuthors = []
-    if(!authors) {
-      return Promise.resolve(authors)
-    }
+    // if(!authors) {
+    //   return Promise.resolve(authors)
+    // }
+    // if(!genres){
+    //   return Promise.resolve(genres)
+    // }
     // if(!Array.isArray(authors)) {
     //   authors = [authors]
     // }
     // console.log(authors, ' ', book.id)
-    // for(author in authors) {
+    // for(author of authors) {
     //   addAuthors.push(Authors.add(book.id, author))
     // }
-    return Promise.resolve(Authors.add(book.id, authors))
+    return Promise.all([Authors.add(book.id, authors), Genres.add(book.id, genres)])
   })
   .then(results => {
     res.redirect('/addBook')
