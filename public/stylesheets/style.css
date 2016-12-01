@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.listing-img{
+  height:350px;
+  max-width:310px;
+}
