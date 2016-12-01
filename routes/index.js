@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
     random.push(Books.get(id))
   }
   Promise.all(random)
-  .then(books => {
-    const bookList = books
-    const bookIds = books.map(book => book.id)
+  .then(tomes => {
+    const bookList = tomes
+    const bookIds = tomes.map(tome => tome.id)
     if(bookIds.length === 0){
-      return Promise.resolve(books)
+      return Promise.resolve(tomes)
     }
     return Promise.all([Authors.get(bookIds), Genres.get(bookIds), bookList])
     })
@@ -30,9 +30,8 @@ router.get('/', function(req, res, next) {
       })
       return books
   })
-  .then( items => {
-    console.log(items)
-    res.render('index', { title: 'Express', books: items })
+  .then( result => {
+    res.render('index', { title: 'Express', items: result })
   })
 });
 
