@@ -11,15 +11,28 @@ router.get('/', function(req, res, next) {
 
 router.post('/add', function(req, res, next) {
   const title = req.body.title
-  const authors = req.body.authors
+  let authors = req.body.authors
   const genres = req.body.genres
   const image_url = req.body.image_url
   const description = req.body.description
   Books.add(description, image_url, title)
-  .then(id => {
-    console.log(id)
+  .then(book => {
+    let addAuthors = []
+    if(!authors) {
+      return Promise.resolve(authors)
+    }
+    // if(!Array.isArray(authors)) {
+    //   authors = [authors]
+    // }
+    // console.log(authors, ' ', book.id)
+    // for(author in authors) {
+    //   addAuthors.push(Authors.add(book.id, author))
+    // }
+    return Promise.resolve(Authors.add(book.id, authors))
   })
-  res.redirect('/addBook')
+  .then(results => {
+    res.redirect('/addBook')
+  })
 
 })
 
