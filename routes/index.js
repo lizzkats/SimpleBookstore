@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
     random.push(Books.get(id))
   }
   Promise.all(random)
-  .then(tomes => {
-    const bookList = tomes
-    const bookIds = tomes.map(tome => tome.id)
+  .then(randomBooks => {
+    const bookList = randomBooks
+    const bookIds = randomBooks.map(randomBook => randomBook.id)
     if(bookIds.length === 0){
-      return Promise.resolve(tomes)
+      return Promise.resolve(randomBooks)
     }
     return Promise.all([Authors.get(bookIds), Genres.get(bookIds), bookList])
     })
