@@ -12,24 +12,6 @@ router.get('/', function(req, res, next) {
     random.push(Books.get(id))
   }
   Promise.all(random)
-  .then(randomBooks => {
-    const bookList = randomBooks
-    const bookIds = randomBooks.map(randomBook => randomBook.id)
-    if(bookIds.length === 0){
-      return Promise.resolve(randomBooks)
-    }
-    return Promise.all([Authors.get(bookIds), Genres.get(bookIds), bookList])
-    })
-    .then(results => {
-      const authors = results[0]
-      const genres = results[1]
-      const books = results[2]
-      books.forEach(book => {
-        book.authors = authors.filter(author => author.book_id === book.id)
-        book.genres = genres.filter(genre => genre.book_id === book.id)
-      })
-      return books
-  })
   .then( result => {
     res.render('index', { title: 'Express', items: result })
   })

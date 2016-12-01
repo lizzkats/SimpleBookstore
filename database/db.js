@@ -13,7 +13,23 @@ const addAuthors = 'INSERT INTO authors(id, name) VALUES(DEFAULT, $2) RETURNING 
 const addGenres = 'INSERT INTO genres(id, name) VALUES(DEFAULT, $2); INSERT INTO book_genres(book_id, genre_id) SELECT books.id, genres.id FROM books JOIN genres ON genres.name = $2 WHERE books.id = $1'
 
 const Books = {
-  get: (id) => db.one(getBook, [id]),
+  get: (id) => db.one(getBook, [id])
+              .then(oneBook => {
+                const book = oneBook
+                const bookId = book.id
+                if(!bookId) {
+                  return Promise.resolve(book)
+                }
+                return Promise.all([Authors.get(bookId), Genres.get(bookId), book])
+                })
+                .then(results => {
+                  const authors = results[0]
+                  const genres = results[1]
+                  const bookInformation = results[2]
+                    bookInformation.authors = authors.filter(author => author.book_id === bookInformation.id)
+                    bookInformation.genres = genres.filter(genre => genre.book_id === bookInformation.id)
+                  return bookInformation
+              }),
   delete: (id) => db.one(deleteBook, [id]),
   add: (description, image_url, title) => db.one(addBook, [description, image_url, title]),
   edit: (id, description, image_url, title) => db.one(editBook, [id, description, image_url, title]),
