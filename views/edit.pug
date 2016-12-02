@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  form(method="post" action="/addBook/add")
+    .row
+      label Title:
+      input(type="text" value=`${item.title}` name="title")
+
+    .row.author
+      label Author:
+      input(type="text" value=`${item.authors}` name="authors")
+      button.addAuthorButton.span.glyphicon.glyphicon-plus.btn.btn-xs
+
+    .row.genre
+      label Genre:
+      input(type="text" value=`${item.genres}` name="genres")
+      button.addGenreButton.span.glyphicon.glyphicon-plus.btn.btn-xs
+
+    .row
+      label Image URL:
+      input(type="text" value=`${item.image_url}` name="image_url" size="50")
+
+    .row
+      label Description:
+      textarea(type="text" name="description" rows="4" cols="50") #{item.description}
+
+    .row
+      button(type="submit") Save Changes

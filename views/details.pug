@@ -14,3 +14,6 @@ block content
   br
   form(method="post" action=`/delete/${book.id}`)
     button(type="submit") Delete
+  br
+  form(method="get" action=`/edit/${book.id}`)
+    button(type="submit") Edit Book
