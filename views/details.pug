@@ -2,13 +2,15 @@ extends layout
 
 block content
   h1= book.title
-  img(src=`${book.image_url}`)
-  for author in book.authors
-    h2= author.name
   -names = book.genres.map(genre => genre.name)
   -names = names.filter( (element, index, array) => !array.slice(0, index).includes(element))
   for name in names
     h3= name
+  img(src=`${book.image_url}`)
+  for author in book.authors
+    .row
+      h3= author.name
+  h4= book.description
   br
   form(method="post" action=`/delete/${book.id}`)
     button(type="submit") Delete
