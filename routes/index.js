@@ -41,7 +41,6 @@ router.post('/search', function(req, res, next) {
   .then(parsedSearchInputResults => {
     let bookSearchResultsDatabaseCalls = []
     const idArray = parsedSearchInputResults.map(parsedSearchInputResult => parsedSearchInputResult.id)
-    (idArray)
     idArray.forEach(id => bookSearchResultsDatabaseCalls.push(Books.get(id)))
     return Promise.all(bookSearchResultsDatabaseCalls)
   })
