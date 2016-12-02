@@ -49,3 +49,7 @@ a {
 .top-section{
   display:inline-block;
 }
+
+.search-container {
+  width: 400px;
+}

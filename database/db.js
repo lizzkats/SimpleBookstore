@@ -12,6 +12,7 @@ const addBook = 'INSERT INTO books(id, description, image_url, title) VALUES(DEF
 const addAuthors = 'INSERT INTO authors(id, name) VALUES(DEFAULT, $2) RETURNING * ; INSERT INTO book_authors(book_id, author_id) SELECT books.id, authors.id FROM books JOIN authors ON authors.name = $2 WHERE books.id = $1 RETURNING *'
 const addGenres = 'INSERT INTO genres(id, name) VALUES(DEFAULT, $2); INSERT INTO book_genres(book_id, genre_id) SELECT books.id, genres.id FROM books JOIN genres ON genres.name = $2 WHERE books.id = $1'
 const deleteBook = 'DELETE FROM books WHERE id = $1 RETURNING *'
+const searchBooks = 'SELECT id FROM books WHERE LOWER(title) LIKE LOWER($1)'
 
 const Books = {
   get: (id) => db.one(getBook, [id])
