@@ -26,11 +26,10 @@ router.get('/details/:id', function(req, res, next) {
 
 router.post('/delete/:id', function(req, res, next){
   const id = req.params.id
-  (id)
   Books.delete(id)
-  .then( deletedBook => {
-    ('deletedBook:',deletedBook)
-    res.render('deletedBook',{ deletedBook : deletedBook })
+  .then( processCompleted => {
+    ('processCompleted:',processCompleted)
+    res.render('processCompleted',{ processCompleted : processCompleted, editFlag : false })
   })
 });
 
@@ -60,7 +59,7 @@ router.get('/edit/:id', function(req, res, next) {
 router.post('/edit/:id', function(req, res, next) {
   const editBook = req.params.id
 
-  res.redirect('/')
+  res.render('processCompleted', {processCompleted : {title : 'thisBook'}, editFlag : true})
 })
 
 module.exports = router;

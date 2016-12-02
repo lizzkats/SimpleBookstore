@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  form(method="post" action="/addBook/add")
+  form(method="post" action=`/edit/${item.id}`)
     .row
       label Title:
       input(type="text" value=`${item.title}` name="title")

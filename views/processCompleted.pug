@@ -1,0 +1,7 @@
+extends layout
+
+block content
+ a(href='/') 
+ -verb = 'deleted'
+ -if(editFlag) { verb = 'edited'}
+  h1 You have successfully #{verb} #{processCompleted.title}
