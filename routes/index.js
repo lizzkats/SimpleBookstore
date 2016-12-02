@@ -26,12 +26,28 @@ router.get('/details/:id', function(req, res, next) {
 
 router.post('/delete/:id', function(req, res, next){
   const id = req.params.id
-  console.log(id)
+  (id)
   Books.delete(id)
   .then( deletedBook => {
-    console.log('deletedBook:',deletedBook)
+    ('deletedBook:',deletedBook)
     res.render('deletedBook',{ deletedBook : deletedBook })
   })
-})
+});
+
+router.post('/search', function(req, res, next) {
+  const searchInput = req.body.searchInput
+  const parsedSearchInput = '%'+searchInput.replace(/\s+/,'%')+'%'
+  Books.search(parsedSearchInput)
+  .then(parsedSearchInputResults => {
+    let bookSearchResultsDatabaseCalls = []
+    const idArray = parsedSearchInputResults.map(parsedSearchInputResult => parsedSearchInputResult.id)
+    (idArray)
+    idArray.forEach(id => bookSearchResultsDatabaseCalls.push(Books.get(id)))
+    return Promise.all(bookSearchResultsDatabaseCalls)
+  })
+    .then( databaseCallsResults => {
+      res.render('index', { items: databaseCallsResults })
+  })
+});
 
 module.exports = router;

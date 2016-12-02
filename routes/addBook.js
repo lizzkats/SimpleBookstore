@@ -27,7 +27,7 @@ router.post('/add', function(req, res, next) {
     // if(!Array.isArray(authors)) {
     //   authors = [authors]
     // }
-    // console.log(authors, ' ', book.id)
+    // (authors, ' ', book.id)
     // for(author of authors) {
     //   addAuthors.push(Authors.add(book.id, author))
     // }
