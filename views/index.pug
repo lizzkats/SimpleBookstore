@@ -1,10 +1,16 @@
 extends layout
 
 block content
-  .container-fluid
-    for item in items
-      .col-xs-4
-        -shortTitle = item.title.slice(0,12).concat('...')
-        a(href=`/details/${item.id}`)
-          h4= shortTitle
-          img.listing-img(src=`${item.image_url}`)
+    .container-fluid.top-section
+      .row
+        .col-md-4
+          .logo
+        .col-md-7
+          .homepage Freedom Bookstore
+
+      for item in items
+        .col-md-4
+          -shortTitle = item.title.slice(0,12).concat('...')
+          a(href=`/details/${item.id}`)
+            h4= shortTitle
+            img.listing-img(src=`${item.image_url}`)
