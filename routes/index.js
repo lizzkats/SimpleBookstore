@@ -57,9 +57,16 @@ router.get('/edit/:id', function(req, res, next) {
 })
 
 router.post('/edit/:id', function(req, res, next) {
-  const editBook = req.params.id
-
-  res.render('processCompleted', {processCompleted : {title : 'thisBook'}, editFlag : true})
+  const editBookId = req.params.id
+  const editDescription = req.body.description
+  const editImageUrl = req.body.image_url
+  const editTitle = req.body.title
+  const editAuthors = req.body.authors
+  const editGenres = req.body.genres
+  Books.edit(editBookId, editDescription, editImageUrl, editTitle, editAuthors, editGenres)
+    .then(() => {
+      res.render('processCompleted', {processCompleted : {title : editTitle}, editFlag : true})
+    })
 })
 
 module.exports = router;
