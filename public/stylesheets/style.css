@@ -1,6 +1,9 @@
 body {
   padding: 50px;
+  padding-top: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*background-img: url('https://upload.wikimedia.org/wikipedia/en/archive/a/a4/20151118161037!Flag_of_the_United_States.svg')
+  */
 }
 
 a {
@@ -10,4 +13,39 @@ a {
 .listing-img{
   height:350px;
   max-width:310px;
+}
+
+.navbar-search{
+  margin-left:5px;
+}
+
+.eagleBanner{
+  background-repeat: no-repeat;
+  height:275px;
+  text-align:center;
+  width:100%;
+}
+
+.container-fluid{
+  text-align:center;
+}
+
+.logo{
+    background: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/300px-Flag_of_the_United_States.svg.png') no-repeat;
+    height:170px;
+    width:300px;
+    display:inline-block;
+}
+
+.homepage{
+  display:inline-block;
+  vertical-align:middle;
+  font-size:3em;
+  margin-left:1em;
+  margin-top:1em;
+  font-family:cutive;
+}
+
+.top-section{
+  display:inline-block;
 }
