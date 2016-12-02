@@ -49,4 +49,18 @@ router.post('/search', function(req, res, next) {
   })
 });
 
+router.get('/edit/:id', function(req, res, next) {
+  const editId = req.params.id
+  Books.get(editId)
+  .then( results => {
+    res.render('edit', { item : results })
+  })
+})
+
+router.post('/edit/:id', function(req, res, next) {
+  const editBook = req.params.id
+
+  res.redirect('/')
+})
+
 module.exports = router;
