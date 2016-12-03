@@ -37,7 +37,15 @@ const Books = {
   add: (description, image_url, title) => db.one(addBook, [description, image_url, title]),
   edit: (id, description, image_url, title, authors, genres) => db.one(editBook, [id, description, image_url, title])
         .then(bookInformation => {
-          Promise.all([Authors.add(id, authors), Genres.add(id, authors)])
+          const authorArray = []
+          const genreArray = []
+          if(!authors){ return Promise.resolve(authors)}
+          if(!genres){ return Promise.resolve(genres)}
+          if(authors.length === 1){ authors = [authors]}
+          if(genres.length === 1){ genres = [genres]}
+          authors.forEach(author => authorArray.push(Authors.add(id, author)))
+          genres.forEach(genre => genreArray.push(Genres.add(id, genre)))
+          Promise.all([authorArray, genreArray])
           .then(() => {
             const editedBook = {}
             editedBook.title = title

@@ -9,12 +9,14 @@ block content
 
     .row.author
       label Author:
-      input(type="text" value=`${item.authors}` name="authors")
+      for author in item.authors
+        input(type="text" value=`${author.name}` name="authors")
       button.addAuthorButton.span.glyphicon.glyphicon-plus.btn.btn-xs
 
     .row.genre
       label Genre:
-      input(type="text" value=`${item.genres}` name="genres")
+      for genre in item.genres
+        input(type="text" value=`${genre.name}` name="genres")
       button.addGenreButton.span.glyphicon.glyphicon-plus.btn.btn-xs
 
     .row
