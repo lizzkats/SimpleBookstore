@@ -41,8 +41,8 @@ const Books = {
           const genreArray = []
           if(!authors){ return Promise.resolve(authors)}
           if(!genres){ return Promise.resolve(genres)}
-          if(authors.length === 1){ authors = [authors]}
-          if(genres.length === 1){ genres = [genres]}
+          if(!Array.isArray(authors)){ authors = [authors]}
+          if(!Array.isArray(genres)){ genres = [genres]}
           authors.forEach(author => authorArray.push(Authors.add(id, author)))
           genres.forEach(genre => genreArray.push(Genres.add(id, genre)))
           Promise.all([authorArray, genreArray])
