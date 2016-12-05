@@ -13,17 +13,20 @@ Creating this web application will provide exposure to:
 ## Specifications
 - [x] Any user can add books into the system
 - [x] Books entered in the system are listed on the home page, in pages of 10
-- [ ] Users can search for books by title OR by author OR by genre, and search results will be presented in a new page
-- [ ] Users can delete books.
-- [ ] Users can edit books.
+- [x] Users can search for books, and search results will be presented in a new page
+- [x] Users can delete books.
+- [x] Users can edit books.
 - [x] Users can view book details on a book detail page, linked to from the listing or search pages
 - [x] All code submissions are peer reviewed via GitHub PR by at least two members of the team, and master is always in a stable state (tests passed, site functions)
+
 ### Required
 - [x] The artifact produced is properly licensed, preferably with the [MIT license](https://opensource.org/licenses/MIT).
+
 ## Stretch Goals
 -Use React 
 -Deploy to Heroku
 -Implement Full Text Search for Postgres
+
 ## Quality Rubric
 - Code is well formatted without any linting errors
 - Variables, functions, css classes, etc. are meaningfully named (no comments exist in code to explain functionality - the names serve that function)
@@ -31,9 +34,11 @@ Creating this web application will provide exposure to:
 - Code is well organized into a meaningful file structure
 - Code is reasonably tested with a test suite
 - Interface is user friendly
+
 ## Resources
 
 Model -
+
 ## http://ondras.zarovi.cz/sql/demo/
 
 <!-- LICENSE -->
